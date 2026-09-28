@@ -31,7 +31,7 @@ import type {
   TranslationResult,
 } from './types'
 
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+const API_URL = (import.meta.env.VITE_API_URL || 'https://techwiz7-generativeai-production.up.railway.app').replace(/\/+$/, '')
 export const UNAUTHORIZED_EVENT = 'supportnova:unauthorized'
 
 class ApiError extends Error {
