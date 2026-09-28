@@ -31,7 +31,7 @@ import type {
   TranslationResult,
 } from './types'
 
-const API_URL = (import.meta.env.VITE_API_URL || 'https://techwiz7-generativeai-production.up.railway.app').replace(/\/+$/, '')
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 export const UNAUTHORIZED_EVENT = 'supportnova:unauthorized'
 
 class ApiError extends Error {
@@ -129,6 +129,8 @@ export const api = {
     localStorage.setItem('supportnova_token', payload.access_token)
     return payload
   },
+  register: (payload: { email: string; full_name: string; password: string }) =>
+    request<User>('/api/v1/auth/register', json('POST', { ...payload, role: 'customer', customer_type: 'standard' })),
   health: () => request<{ status: string; database: string; genai_configured: boolean }>('/health'),
   me: () => request<User>('/api/v1/auth/me'),
 
