@@ -4532,6 +4532,10 @@ label.check input[type="checkbox"] {
   grid-column: span 2 !important;
 }
 
+.dashboard-grid>.span-2:has(+ .span-2) {
+  grid-column: 1 / -1 !important;
+}
+
 .dashboard-grid>.span-3,
 .detail-grid>.span-3,
 .response-layout>.span-3 {
